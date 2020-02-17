@@ -1,0 +1,31 @@
+﻿<h2>Step 2</h2>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Country</label>
+        <select formControlName="country" id="country" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" (change)="filterProvinces($event.target.value)">
+            <option *ngFor="let cntr of country; let i = index" [value]="country[i].id">
+                {{country[i].name}}
+            </option>
+        </select>
+        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+            <div *ngIf="f.country.errors.required">country is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Province</label>
+        <select formControlName="province" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.province.errors }">
+            <option *ngFor="let prov of province; let i = index" [value]="province[i].id">
+                {{province[i].name}}
+            </option>
+        </select>
+        <div *ngIf="submitted && f.province.errors" class="invalid-feedback">
+            <div *ngIf="f.province.errors.required">province is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+    </div>
+</form>

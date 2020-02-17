@@ -1,0 +1,8 @@
+﻿<h1>Current user: {{currentUser.login}}</h1>
+
+<h3>All registered users:</h3>
+<ul>
+    <li *ngFor="let user of users">
+        {{user.login}} ({{user.province}}, {{user.country}})
+    </li>
+</ul>
